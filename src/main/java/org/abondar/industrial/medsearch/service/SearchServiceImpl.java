@@ -3,6 +3,7 @@ package org.abondar.industrial.medsearch.service;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
+import io.reactivex.Single;
 import net.minidev.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,24 +39,24 @@ public class SearchServiceImpl implements SearchService {
   }
 
   @Override
-  public String searchByName(String medicineName) {
+  public Single<String> searchByName(String medicineName) {
     if (isJsonParsed()) {
       var query = String.format(NAME_SEARCH_QUERY, medicineName);
       var res =(JSONArray) JsonPath.read(document, query);
-      return res.toJSONString();
+      return Single.just(res.toJSONString());
     } else {
-      return EMPTY_RESULT;
+      return Single.just(EMPTY_RESULT);
     }
   }
 
   @Override
-  public String searchByDisease(String diseaseName) {
+  public Single<String> searchByDisease(String diseaseName) {
       if (isJsonParsed()) {
           var query = String.format(DISEASE_SEARCH_QUERY, diseaseName);
           var res = (JSONArray) JsonPath.read(document, query);
-          return res.toJSONString();
+          return Single.just(res.toJSONString());
       } else {
-          return EMPTY_RESULT;
+          return Single.just(EMPTY_RESULT);
       }
   }
 

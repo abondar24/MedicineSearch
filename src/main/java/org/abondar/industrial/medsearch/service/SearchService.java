@@ -1,10 +1,12 @@
 package org.abondar.industrial.medsearch.service;
 
+import io.reactivex.Single;
+
 public interface SearchService {
 
     void readData();
 
-    String searchByName(String medicineName);
+    Single<String> searchByName(String medicineName);
 
-    String searchByDisease(String diseaseName);
+    Single<String> searchByDisease(String diseaseName);
 }
