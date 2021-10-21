@@ -3,7 +3,6 @@ package org.abondar.industrial.medsearch.service;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.abondar.industrial.medsearch.service.JsonUtil.EMPTY_RESULT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -31,7 +30,19 @@ public class SearchServiceTest {
   @Test
   public void searchByNameNoDocTest() {
     var res = service.searchByName("test");
-    res.subscribe(ok -> assertEquals(EMPTY_RESULT, ok));
+    res.subscribe(System.out::print, ex -> assertEquals("JSON not parsed", ex.getMessage()));
+  }
+
+  @Test
+  public void searchByNameEmptyTest() {
+    service.readData();
+
+    var res = service.searchByName("test");
+
+    res.subscribe(
+        System.out::print,
+        ex -> System.out.println(ex.getMessage()),
+        () -> System.out.println("Completed. No items."));
   }
 
   @Test
