@@ -1,0 +1,59 @@
+{
+  "drugs": [
+    {
+      "id": "b52d7619-da1f-4d63-805d-1d124fe53df4",
+      "diseases": [
+        "bladder disease",
+        "cystitis",
+        "acute cystitis"
+      ],
+      "description": "Eum et quia aliquam fugiat. Ab est quam esse. Quia quibusdam sunt temporibus repudiandae doloremque ea. Nisi eum aperiam modi tempora blanditiis hic iure mollitia ut.",
+      "name": "Folic Acid",
+      "released": "1973-12-29"
+    },
+    {
+      "id": "58b565e6-32a9-45f6-adef-2e24b9b5582e",
+      "diseases": [
+        "bladder disease",
+        "cystitis",
+        "acute cystitis"
+      ],
+      "description": "Vero eum rerum recusandae autem. Et eveniet enim ut voluptates iste velit libero. Veniam eos omnis aut exercitationem quibusdam dolores.",
+      "name": "Azasan",
+      "released": "1995-10-14"
+    },
+    {
+      "id": "cdf1dcda-19cf-4cbc-ae9c-75d7ae4088ae",
+      "diseases": [
+        "sensory system disease",
+        "auditory system disease",
+        "dislocation of ear ossicle"
+      ],
+      "description": "Provident et ratione adipisci blanditiis sit omnis. Quis sit molestias perspiciatis ea est vel totam. Est et ut aspernatur ut cupiditate voluptatem fuga incidunt. Ea vel non quidem. Quasi odio deleniti quo. Quasi et fugiat veniam temporibus hic excepturi veniam voluptatem quia.",
+      "name": "Emsam",
+      "released": "2000-12-07"
+    },
+    {
+      "id": "df4b747e-dffc-440c-a431-067fdbd2be39",
+      "diseases": [
+        "blindness",
+        "color blindness",
+        "achromatopsia"
+      ],
+      "description": "Ad et blanditiis non similique natus ducimus non tenetur. Id voluptate commodi ut dolor fugit. Sed rerum aut enim unde blanditiis eaque saepe quaerat. Est at enim eveniet sequi qui sit est. Consequatur atque provident voluptate non laboriosam voluptates ullam dolorem asperiores.",
+      "name": "Levocabastine",
+      "released": "1981-10-30"
+    },
+    {
+      "id": "19331831-28af-4d4f-84cd-61ad22173fc7",
+      "diseases": [
+        "bacterial infectious disease",
+        "primary bacterial infectious disease",
+        "ehrlichiosis"
+      ],
+      "description": "Et adipisci nulla totam ea. Autem earum sint ut earum enim. Laborum pariatur totam exercitationem.",
+      "name": "Fludarabine Phosphate",
+      "released": "1987-09-08"
+    }
+  ]
+}
