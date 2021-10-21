@@ -3,7 +3,7 @@ package org.abondar.industrial.medsearch.service;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.InvalidJsonException;
 import com.jayway.jsonpath.JsonPath;
-import io.reactivex.Single;
+import io.reactivex.Maybe;
 import net.minidev.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,16 +11,13 @@ import org.slf4j.LoggerFactory;
 import java.nio.charset.StandardCharsets;
 
 import static org.abondar.industrial.medsearch.service.JsonUtil.DISEASE_SEARCH_QUERY;
-import static org.abondar.industrial.medsearch.service.JsonUtil.EMPTY_RESULT;
 import static org.abondar.industrial.medsearch.service.JsonUtil.NAME_SEARCH_QUERY;
 
 public class SearchServiceImpl implements SearchService {
 
   private static final Logger logger = LoggerFactory.getLogger(SearchServiceImpl.class);
-
-  private Object document;
-
   private final String fileName;
+  private Object document;
 
   public SearchServiceImpl(String fileName) {
     this.fileName = fileName;
@@ -39,25 +36,28 @@ public class SearchServiceImpl implements SearchService {
   }
 
   @Override
-  public Single<String> searchByName(String medicineName) {
-    if (isJsonParsed()) {
-      var query = String.format(NAME_SEARCH_QUERY, medicineName);
-      var res =(JSONArray) JsonPath.read(document, query);
-      return Single.just(res.toJSONString());
-    } else {
-      return Single.just(EMPTY_RESULT);
-    }
+  public Maybe<String> searchByName(String medicineName) {
+    var query = String.format(NAME_SEARCH_QUERY, medicineName);
+    return doSearch(query);
   }
 
   @Override
-  public Single<String> searchByDisease(String diseaseName) {
-      if (isJsonParsed()) {
-          var query = String.format(DISEASE_SEARCH_QUERY, diseaseName);
-          var res = (JSONArray) JsonPath.read(document, query);
-          return Single.just(res.toJSONString());
-      } else {
-          return Single.just(EMPTY_RESULT);
+  public Maybe<String> searchByDisease(String diseaseName) {
+    var query = String.format(DISEASE_SEARCH_QUERY, diseaseName);
+    return doSearch(query);
+  }
+
+  private Maybe<String> doSearch(String query) {
+    if (isJsonParsed()) {
+      var res = (JSONArray) JsonPath.read(document, query);
+
+      if (res.size() == 0) {
+        return Maybe.empty();
       }
+      return Maybe.just(res.toJSONString());
+    } else {
+      return Maybe.error(new RuntimeException("JSON not parsed"));
+    }
   }
 
   private boolean isJsonParsed() {

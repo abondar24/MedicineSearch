@@ -8,7 +8,6 @@ public class JsonUtil {
 
     public static final String DISEASE_SEARCH_QUERY = "$.drugs[?('%s' in @.diseases)]";
 
-    public static final String EMPTY_RESULT = "[]";
 
     private JsonUtil(){}
 }
